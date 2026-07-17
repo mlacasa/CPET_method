@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cpet-functional-skeleton"
+version = "0.1.0"
+description = "Protocol-aware phase-specific functional representation of breath-by-breath CPET records"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  {name = "Marcos Lacasa-Cazcarra"},
+  {name = "Patricia Launois Obregon"},
+  {name = "Alba Gomez Garrido"},
+]
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
