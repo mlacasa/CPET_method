@@ -1,0 +1,64 @@
+{
+  "origins": {
+    "real": "observed-derived; impact only, no latent truth",
+    "synthetic": "analytic signal plus controlled perturbations, observed coordinate/mask patterns"
+  },
+  "normalization": "error divided by channel amplitude scale in channel_scales.csv; synthetic arrays computed in normalized units; units-RMSE multiplies by scale",
+  "units": {
+    "VO2kg": "mL/kg/min",
+    "VO2": "mL/min",
+    "VCO2": "mL/min",
+    "RER": "ratio",
+    "BF": "breaths/min",
+    "VE": "L/min",
+    "PETCO2": "kPa",
+    "PETO2": "kPa",
+    "RPM": "rev/min",
+    "EqCO2": "ratio",
+    "EqO2": "ratio",
+    "SpO2": "percent",
+    "HR": "beats/min",
+    "HRR_L": "percent",
+    "O2pulse": "mL/beat",
+    "Psist": "mmHg",
+    "Pdia": "mmHg"
+  },
+  "keys": {
+    "metrics": [
+      "template_id",
+      "session",
+      "phase",
+      "channel",
+      "scenario",
+      "method"
+    ],
+    "paired": [
+      "template_id",
+      "phase",
+      "channel",
+      "scenario",
+      "method"
+    ],
+    "features": [
+      "template_id",
+      "session",
+      "phase",
+      "channel",
+      "scenario",
+      "method",
+      "replicate"
+    ]
+  },
+  "independence": "60 paired participant patterns; sessions, breaths, scenarios and replicates not independent patients",
+  "missing_values": "NaN; never zero-fill; abstentions reported through coverage",
+  "metric_definitions": {
+    "native_rmse": "RMSE vs analytic truth at original positions with finite output",
+    "grid_rmse": "RMSE vs analytic function evaluated at target grid centers, not a smoothed/bin-averaged truth",
+    "score": ".25*native_rmse+.75*grid_rmse, balanced by scenario family then phase/channel within participant",
+    "peak_height_ratio": "estimated signed local feature height divided by imposed amplitude; not clinical VO2peak",
+    "peak_time_error_s": "absolute error in equivalent-phase time, not physical time through workload plateaus",
+    "width_error_s": "sampled connected width above half true feature amplitude; no crossing interpolation; proxy seconds",
+    "feature_area_error_norm": "absolute integrated residual-minus-true-feature over common observed local positions, divided by amplitude*nominal FWHM",
+    "adequately_sampled": "at least 3 finite local points and at least 2 within true FWHM; insufficiently sampled cases are retained"
+  }
+}

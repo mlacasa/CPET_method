@@ -4,7 +4,8 @@ title: "Protocol-aware CPET functional representation"
 type: software
 repository-code: "https://github.com/mlacasa/CPET_method"
 url: "https://github.com/mlacasa/CPET_method"
-version: 0.2.0
+version: 0.2.1
+date-released: 2026-10-03
 authors:
   - family-names: Lacasa-Cazcarra
     given-names: Marcos

@@ -131,23 +131,25 @@ def _supported_grid_curve(
 
     binned = pd.DataFrame(
         {
-            "bin": np.round(coordinate[valid] / step) * step,
+            # Integer identities avoid decimal-centre roundoff at the boundary.
+            # np.rint retains the existing nearest, ties-to-even assignment.
+            "bin": np.rint(coordinate[valid] / step).astype(np.intp),
             "value": values[valid],
         }
     )
     summary = binned.groupby("bin", as_index=False)["value"].median().sort_values("bin")
     summary = summary.loc[
-        (summary["bin"] >= grid.min()) & (summary["bin"] <= grid.max())
+        (summary["bin"] >= 0) & (summary["bin"] < len(grid))
     ]
     if len(summary) < 2:
         return SupportedTrajectory(grid.copy(), output, np.isfinite(output), observed)
 
-    x = summary["bin"].to_numpy(dtype=float)
+    indices = summary["bin"].to_numpy(dtype=np.intp)
+    x = grid[indices]
     y = summary["value"].to_numpy(dtype=float)
     inside = (grid >= x.min()) & (grid <= x.max())
     output[inside] = np.interp(grid[inside], x, y)
-    for bin_value in x:
-        observed |= np.isclose(grid, bin_value, rtol=0, atol=1e-10)
+    observed[indices] = True
 
     return SupportedTrajectory(
         grid=grid.copy(),

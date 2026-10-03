@@ -1,0 +1,67 @@
+{
+  "environment": {
+    "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "versions": {
+      "cpet-functional-skeleton": "0.2.1",
+      "numpy": "2.5.3",
+      "pandas": "3.0.6",
+      "matplotlib": "3.11.2",
+      "nbclient": "0.11.0",
+      "nbformat": "5.11.1",
+      "ipykernel": "7.4.0"
+    },
+    "installed_module": "venv/Lib/site-packages/cpet_skeleton/__init__.py"
+  },
+  "nominal_invariance": {
+    "records": 40,
+    "channels": 3,
+    "phases": 2,
+    "pairs": 20,
+    "seed": 20261003,
+    "arrays_and_scalars_compared": 1920,
+    "exact_match": true,
+    "grids": {
+      "ramp": "0:1:100",
+      "recovery": "0:5:180"
+    }
+  },
+  "tests_passed": 24,
+  "old_example_all_files_exact": true,
+  "date": "2026-10-03",
+  "baseline_commit": "4b424221b0d5e47d7d7eb05e8028263a12a8999d",
+  "baseline_020_tests_passed": 20,
+  "decimal_regressions_failing_on_020": 3,
+  "study_environment": {
+    "python": "3.13.9",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "tests_passed": 24
+  },
+  "notebook": {
+    "executed_code_cells": 7,
+    "errors": 0,
+    "verification": "local execution; actual Colab execution pending",
+    "installation_source": "local 0.2.1 source build through documented maintainer override",
+    "controller_versions": {
+      "nbclient": "0.10.2",
+      "nbformat": "5.10.4"
+    },
+    "published_outputs_cleared": true
+  },
+  "exports": [
+    {
+      "output": "unequal_duration_output",
+      "files": 19,
+      "archive_verified": true
+    },
+    {
+      "output": "cpet_tutorial_output",
+      "files": 19,
+      "archive_verified": true
+    }
+  ],
+  "example_and_notebook_csv_json_equal": true,
+  "private_clinical_concordance_rerun": false,
+  "manuscript_simulations_rerun": false
+}

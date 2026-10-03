@@ -1,0 +1,28 @@
+{
+  "note": "Mathematical stress templates, not fitted physiological truth; u=phase coordinate / grid upper bound",
+  "ramp": {
+    "VO2kg,VO2,Psist": "u",
+    "VCO2,VE,BF,RER": "0.6*u + (0.4/0.45)*max(u-0.55,0)",
+    "HR,O2pulse": "(1-exp(-2*u))/(1-exp(-2))",
+    "EqO2,EqCO2,PETO2": "(u-0.35)^2 / 0.65^2",
+    "PETCO2": "1-exp(-5*u)-0.8*max(u-0.65,0)",
+    "HRR_L": "1-u",
+    "SpO2": "0.8-0.3*u",
+    "Pdia": "0.4+0.2*u",
+    "RPM": "0.6+0.1*sin(2*pi*u)"
+  },
+  "recovery": {
+    "HRR_L,SpO2": "1-exp(-3*u)",
+    "Pdia": "0.55+0.15*exp(-3*u)",
+    "RPM": "0.2+0.1*exp(-6*u)",
+    "other_channels": "exp(-3*u)"
+  },
+  "known_session2_change": {
+    "ramp": ".05*u",
+    "recovery": ".05*exp(-3*u)"
+  },
+  "peak": "signed amplitude*exp(-4*log(2)*((u-center)/FWHM_u)^2)",
+  "oscillation": "amplitude*sin(2*pi*(u-center)/period_u)",
+  "features": "same families in every channel; mathematical rather than clinical diagnoses; see frozen study_code_frozen.py",
+  "native_scale_and_offset": "channel_scales.csv; normalized error requires no offset; physical-unit error = normalized error*amplitude_scale"
+}

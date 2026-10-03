@@ -1,0 +1,25 @@
+test_boundaries_are_not_extrapolated (test_core.RepresentationTests.test_boundaries_are_not_extrapolated) ... ok
+test_pairwise_rms_uses_only_joint_support (test_core.RepresentationTests.test_pairwise_rms_uses_only_joint_support) ... ok
+test_all_missing_channel_is_unavailable (test_method_contract.MethodContractTests.test_all_missing_channel_is_unavailable) ... ok
+test_anchor_is_strictly_post_peak_without_fallback (test_method_contract.MethodContractTests.test_anchor_is_strictly_post_peak_without_fallback) ... ok
+test_default_pair_support_thresholds_and_known_offset (test_method_contract.MethodContractTests.test_default_pair_support_thresholds_and_known_offset) ... ok
+test_duplicate_and_nonfinite_structure_are_not_silently_deleted (test_method_contract.MethodContractTests.test_duplicate_and_nonfinite_structure_are_not_silently_deleted) ... ok
+test_empty_pair_cannot_be_made_eligible_by_zero_minimum (test_method_contract.MethodContractTests.test_empty_pair_cannot_be_made_eligible_by_zero_minimum) ... ok
+test_explicit_protocol_anchor_and_explicit_absence (test_method_contract.MethodContractTests.test_explicit_protocol_anchor_and_explicit_absence) ... ok
+test_input_not_modified_and_rows_sorted (test_method_contract.MethodContractTests.test_input_not_modified_and_rows_sorted) ... ok
+test_invalid_grids_markers_and_windows_are_rejected (test_method_contract.MethodContractTests.test_invalid_grids_markers_and_windows_are_rejected) ... ok
+test_linear_truth_on_internal_grid (test_method_contract.MethodContractTests.test_linear_truth_on_internal_grid) ... ok
+test_mean_is_confined_to_phase_before_windowing (test_method_contract.MethodContractTests.test_mean_is_confined_to_phase_before_windowing) ... ok
+test_median_per_bin_remains_distinct (test_method_contract.MethodContractTests.test_median_per_bin_remains_distinct) ... ok
+test_missing_centre_is_restored_then_internal_bin_is_interpolated (test_method_contract.MethodContractTests.test_missing_centre_is_restored_then_internal_bin_is_interpolated) ... ok
+test_missing_phase_does_not_erase_other_records_recovery (test_method_contract.MethodContractTests.test_missing_phase_does_not_erase_other_records_recovery) ... ok
+test_one_occupied_bin_is_unavailable (test_method_contract.MethodContractTests.test_one_occupied_bin_is_unavailable) ... ok
+test_original_units_are_retained (test_method_contract.MethodContractTests.test_original_units_are_retained) ... ok
+test_rounding_ties_to_even_and_native_domain_exclusion (test_method_contract.MethodContractTests.test_rounding_ties_to_even_and_native_domain_exclusion) ... ok
+test_single_arithmetic_mean_pass_with_truncated_edges (test_method_contract.MethodContractTests.test_single_arithmetic_mean_pass_with_truncated_edges) ... ok
+test_workload_downsteps_use_cumulative_envelope (test_method_contract.MethodContractTests.test_workload_downsteps_use_cumulative_envelope) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.229s
+
+OK

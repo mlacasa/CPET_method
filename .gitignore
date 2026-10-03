@@ -6,3 +6,9 @@ build/
 dist/
 *.egg-info/
 example_output/
+
+unequal_duration_output/
+unequal_duration_output.zip
+cpet_tutorial_output/
+cpet_tutorial_output.zip
+.ipynb_checkpoints/

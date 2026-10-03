@@ -1,0 +1,146 @@
+{
+  "published_selection_date": "2026-10-03",
+  "note": "Historical materials, not new simulations; see README for restricted dependencies.",
+  "files": [
+    {
+      "file": "design/analysis_config.json",
+      "source_run": "smoothing_20260930T104226+0200",
+      "source_file": "analysis_config.json",
+      "source_sha256": "7a4b0032a5b7a2f984a33c04156949e44fb4a5f3b56055f5c95bbc38d43c35d6",
+      "public_sha256": "817d3bb9f5d081cf96f56e2dcbcee4ffefa91806f3c2647b6dcdc48bbb13341b",
+      "changes": [
+        "Omit the scope field containing an internal task instruction; scientific configuration unchanged."
+      ]
+    },
+    {
+      "file": "design/truth_model_dictionary.json",
+      "source_run": "smoothing_20260930T104226+0200",
+      "source_file": "truth_model_dictionary.json",
+      "source_sha256": "90097a05d6888947ee66db1433b36f0e44fc39e734f0ee6bb175b4a70a736679",
+      "public_sha256": "90097a05d6888947ee66db1433b36f0e44fc39e734f0ee6bb175b4a70a736679",
+      "changes": []
+    },
+    {
+      "file": "design/channel_scales.csv",
+      "source_run": "smoothing_20260930T104226+0200",
+      "source_file": "channel_scales.csv",
+      "source_sha256": "04d76a2840342a999699fa2036cc74525d01586b0398fa99d43eb957a8793ce7",
+      "public_sha256": "04d76a2840342a999699fa2036cc74525d01586b0398fa99d43eb957a8793ce7",
+      "changes": []
+    },
+    {
+      "file": "design/scenario_manifest.csv",
+      "source_run": "smoothing_20260930T104226+0200",
+      "source_file": "scenario_manifest.csv",
+      "source_sha256": "cb50babdeb5ce7ce589af6d9d3672221a96d181b9ff985a47fb09f1368cf36a0",
+      "public_sha256": "cb50babdeb5ce7ce589af6d9d3672221a96d181b9ff985a47fb09f1368cf36a0",
+      "changes": []
+    },
+    {
+      "file": "design/contract_tests.csv",
+      "source_run": "smoothing_20260930T104226+0200",
+      "source_file": "contract_tests.csv",
+      "source_sha256": "d45e0ac6728b21d9973be3b03c492c86413e16d86008ebf1813ade3b50b64bdf",
+      "public_sha256": "d45e0ac6728b21d9973be3b03c492c86413e16d86008ebf1813ade3b50b64bdf",
+      "changes": []
+    },
+    {
+      "file": "design/simulation_complete.json",
+      "source_run": "smoothing_20260930T104226+0200",
+      "source_file": "simulation_complete.json",
+      "source_sha256": "58bfc5605ea2cba9a23d6bb5259d82fb38f7d0cd2ab5a619a6bd984bc1eacade",
+      "public_sha256": "58bfc5605ea2cba9a23d6bb5259d82fb38f7d0cd2ab5a619a6bd984bc1eacade",
+      "changes": []
+    },
+    {
+      "file": "design/data_dictionary.json",
+      "source_run": "smoothing_20260930T104226+0200",
+      "source_file": "data_dictionary.json",
+      "source_sha256": "0abc65e9abed3894b4f7a6bdf26751898e234e70316c8449997a373b909d1667",
+      "public_sha256": "0abc65e9abed3894b4f7a6bdf26751898e234e70316c8449997a373b909d1667",
+      "changes": []
+    },
+    {
+      "file": "source/study_code_frozen.py",
+      "source_run": "smoothing_20260930T104226+0200",
+      "source_file": "study_code_frozen.py",
+      "source_sha256": "f0d272cbda09b360a3b10c91bfc0999a2a6ee763b4519ac2a0acf047019435d0",
+      "public_sha256": "f0d272cbda09b360a3b10c91bfc0999a2a6ee763b4519ac2a0acf047019435d0",
+      "changes": []
+    },
+    {
+      "file": "source/summarize_validation_final.py",
+      "source_run": "validation_20261001T142431+0200",
+      "source_file": "summarize_validation_final.py",
+      "source_sha256": "4ca80f0f6502a440f538a0ea41bd87178f6aee3bf80395b44fb4f2ab731c5592",
+      "public_sha256": "4ca80f0f6502a440f538a0ea41bd87178f6aee3bf80395b44fb4f2ab731c5592",
+      "changes": []
+    },
+    {
+      "file": "aggregates/analysis_config.json",
+      "source_run": "validation_20261001T142431+0200",
+      "source_file": "analysis_config.json",
+      "source_sha256": "b6cc463a5f5851e21c2cd0a512cc3777ebd4f33fbe7883064151f93c3e2239f3",
+      "public_sha256": "67ccd6176da61ac7232a09c2dc7e5e11dd536fdb350f782e794ef34e0cbe8974",
+      "changes": [
+        "Replace absolute author-workspace source path with the same historical run identifier."
+      ]
+    },
+    {
+      "file": "aggregates/environment.json",
+      "source_run": "validation_20261001T142431+0200",
+      "source_file": "environment.json",
+      "source_sha256": "f1055ac2db0b985a7269e38b21ab75e9fc9bfefdb64876e947cf6ce55b981312",
+      "public_sha256": "f1055ac2db0b985a7269e38b21ab75e9fc9bfefdb64876e947cf6ce55b981312",
+      "changes": []
+    },
+    {
+      "file": "aggregates/quality_assurance.json",
+      "source_run": "validation_20261001T142431+0200",
+      "source_file": "quality_assurance.json",
+      "source_sha256": "2cfe5fbde37ed2ff4ef794f3503a0f06c2dfbf630db6f6efb28d769b258cbde6",
+      "public_sha256": "2cfe5fbde37ed2ff4ef794f3503a0f06c2dfbf630db6f6efb28d769b258cbde6",
+      "changes": []
+    },
+    {
+      "file": "aggregates/validation_by_channel.csv",
+      "source_run": "validation_20261001T142431+0200",
+      "source_file": "validation_by_channel.csv",
+      "source_sha256": "55998e7d179f1953d0fe3d7b87b22a263bafdefad8dc132c5149d1a291386510",
+      "public_sha256": "55998e7d179f1953d0fe3d7b87b22a263bafdefad8dc132c5149d1a291386510",
+      "changes": []
+    },
+    {
+      "file": "aggregates/validation_by_family.csv",
+      "source_run": "validation_20261001T142431+0200",
+      "source_file": "validation_by_family.csv",
+      "source_sha256": "11f39775580972569c7d98612c05c984f29cebce72d250dd5206489c42d617c6",
+      "public_sha256": "11f39775580972569c7d98612c05c984f29cebce72d250dd5206489c42d617c6",
+      "changes": []
+    },
+    {
+      "file": "aggregates/validation_contrasts.csv",
+      "source_run": "validation_20261001T142431+0200",
+      "source_file": "validation_contrasts.csv",
+      "source_sha256": "28738e6236ed8b60eac874d929e011e57b10f88a9d2397cb22e5da27e551c62e",
+      "public_sha256": "28738e6236ed8b60eac874d929e011e57b10f88a9d2397cb22e5da27e551c62e",
+      "changes": []
+    },
+    {
+      "file": "aggregates/main_table_values.csv",
+      "source_run": "validation_20261001T142431+0200",
+      "source_file": "main_table_values.csv",
+      "source_sha256": "50e6603b7de59cd2f240b9ece1088bd9d6ed7b7bf3d37b6558fb51485fbd354d",
+      "public_sha256": "50e6603b7de59cd2f240b9ece1088bd9d6ed7b7bf3d37b6558fb51485fbd354d",
+      "changes": []
+    },
+    {
+      "file": "aggregates/main_figure_values.csv",
+      "source_run": "validation_20261001T142431+0200",
+      "source_file": "main_figure_values.csv",
+      "source_sha256": "794473b0f7edc5e9e73d4b03ec0dd534001d07d2a4679be026c1778345daac8d",
+      "public_sha256": "794473b0f7edc5e9e73d4b03ec0dd534001d07d2a4679be026c1778345daac8d",
+      "changes": []
+    }
+  ]
+}

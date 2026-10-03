@@ -1,227 +1,104 @@
 # Protocol-aware CPET functional representation
 
-Transform irregular breath-by-breath cardiopulmonary exercise test (CPET) records
-into comparable phase-specific matrices with explicit support masks. Each record
-is processed independently. Ramp is indexed by percentage of its attained peak
-workload; recovery is indexed by seconds from its protocol transition.
+Transform irregular breath-by-breath CPET records of different lengths into
+comparable **ramp and recovery matrices with explicit availability masks**.
+Each record is transformed independently: ramp uses % of its attained peak
+workload; recovery uses seconds from its protocol transition. Channel amplitudes
+retain their original units.
 
-**Status: manuscript and software under peer review.** Version **0.2.0**
-accompanies the revised manuscript *Protocol-Aware Phase-Specific Representation
-of Breath-by-Breath CPET Signals for Record-to-Record Comparison*.
+**Version 0.2.1 — manuscript and software under peer review.** The authors make
+the code publicly available now so reviewers and researchers can inspect and run
+it. Updates may follow review. The final journal citation, archival DOI and reuse
+license are pending; public access does not establish an open reuse license.
+See [release status](RELEASE.md).
 
-The authors share this code publicly during peer review so that reviewers and
-researchers can inspect the implementation, run the synthetic example and
-reproduce its documented checks:
-[github.com/mlacasa/CPET_method](https://github.com/mlacasa/CPET_method).
-The implementation and documentation may be updated in response to review.
-When reporting results, record both the package version and the Git commit.
-The manuscript has not been accepted; the final citation and reuse license
-remain pending. See [release status](RELEASE.md).
+## Start with the notebook
 
-## Install and run
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mlacasa/CPET_method/blob/v0.2.1/notebooks/CPET_method_tutorial.ipynb)
 
-Requires Python 3.10 or later, NumPy >=1.24 and pandas >=2.0. Commands below are run
-from the repository directory after downloading it or running:
+[Open the notebook on GitHub](notebooks/CPET_method_tutorial.ipynb). It installs
+the tagged version, generates four/eight-minute synthetic ramps, gives recovery
+the same treatment, plots native and represented signals, explains support masks
+and downloads the results. No clinical records, credentials or author-specific
+paths are required. **Verificado localmente; ejecución en Colab pendiente.**
+
+## What you supply
+
+- One harmonised pandas `DataFrame` per record: unique finite `time_s` (seconds),
+  finite `workload_w` (watts), and named numerical channels in their original units.
+- Audited ramp onset, peak time and positive peak workload; an audited recovery
+  anchor or a protocol-specific transition rule. Missing channel values are NaNs.
+- Upstream device harmonisation and physiological quality control. Keep channel
+  gaps as missing values without silently deleting their native breath positions.
+
+The package provides the transformation; it does not automatically perform the
+entire ingestion, QC and marker-auditing workflow.
+
+## Install and run locally
+
+Python >=3.10; core dependencies are NumPy >=1.24 and pandas >=2.0. The tutorial
+extra adds Matplotlib. From a terminal:
 
 ```bash
-git clone https://github.com/mlacasa/CPET_method.git
+git clone --branch v0.2.1 https://github.com/mlacasa/CPET_method.git
 cd CPET_method
-```
-
-Create an isolated environment:
-
-```bash
 python -m venv .venv
 ```
 
-Activate it on Linux/macOS:
+Activate with `source .venv/bin/activate` on Linux/macOS, or
+`.\.venv\Scripts\Activate.ps1` on Windows PowerShell, then:
 
 ```bash
-source .venv/bin/activate
-```
-
-Or on Windows PowerShell:
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-Install, run the checks and run the example:
-
-```bash
-python -m pip install .
+python -m pip install ".[tutorial]"
 python -m unittest discover -s tests -v
-python examples/synthetic_example.py --output-dir example_output
+python examples/unequal_duration_example.py --output-dir unequal_duration_output
 ```
 
-If activation is unavailable, run commands with `.venv/bin/python` on Linux/macOS
-or `.\.venv\Scripts\python.exe` on Windows. For development, use
-`python -m pip install -e .` instead of a regular installation.
+If activation is unavailable, use `.venv/bin/python` (Linux/macOS) or
+`.\.venv\Scripts\python.exe` (Windows). For development use `pip install -e ".[tutorial]"`.
+The notebook also supports local Jupyter execution; see [verification](VERIFICATION.md).
 
-The example needs no downloads, participant data, credentials or local study paths.
-It generates two irregular synthetic records using seeds 101 and 202 and writes:
+## What you receive
 
-| Output | Contents |
+The default grids have **101 ramp positions** (0–100 %Wpeak) and **37 recovery
+positions** (0–180 seconds). The grid is a common set of candidate coordinates;
+availability remains specific to each record and channel.
+
+| Output | Meaning |
 |---|---|
-| `synthetic_cpet1.csv`, `synthetic_cpet2.csv` | Synthetic native observations, including missing channel values |
-| `trajectories.csv` | Both phases/channels, grid coordinates, values and three support masks |
-| `paired_VCO2.csv` | Optional CPET2-minus-CPET1 difference on joint support |
-| `summary.json` | Record-specific markers, supported counts, RMS and a missing-recovery check |
+| `values` | Channel values; NaN outside supported bounds |
+| `defined` | Positions with available output |
+| `observed_bin` | Available positions supplied by occupied-bin summaries |
+| `interpolated` | Available positions estimated between occupied bins |
 
-CSV empty numerical cells mean unavailable, not zero. Re-running the example in
-the same output directory replaces these generated files. Its third case truncates
-one record at peak: recovery stays unavailable and the other record's recovery is
-retained. These are mathematical illustrations, not physiological validation data.
+The example exports native observations, markers/counts, coordinate-labelled
+matrices and all masks for both phases, optional paired differences, figures and
+a ZIP bundle. Empty numerical CSV cells mean unavailable, not zero. Output files
+are replaced when the same output directory is reused.
 
-## Input contract
+The four/eight-minute comparison illustrates alignment, a separate +30 mL/min
+copy isolates a known amplitude change, and a truncated copy illustrates absent
+recovery. Equal %Wpeak need not mean equal watts or equal physiological state.
+See [example interpretation and outputs](docs/EXAMPLES.md).
 
-Pass one pandas `DataFrame` per record:
+## Inspect the method and evidence
 
-| Column | Required meaning |
+| Material | Scope |
 |---|---|
-| `time_s` | Finite elapsed time in seconds, one unique time per native observation |
-| `workload_w` | Finite delivered workload in watts |
-| Named channels, e.g. `VO2`, `VCO2` | Numerical measurements in their original units; missing values allowed |
+| [Method contract and API examples](docs/METHOD.md) | Smoothing, binning, interpolation, markers, masks and optional pairing |
+| [Current verification](VERIFICATION.md) | Installation, 24 software tests, nominal regression and notebook execution |
+| [Historical reconstruction materials](validation/README.md) | Analytic functions, scenario parameters, metric definitions, frozen code and aggregate results; restricted dependencies identified |
+| [Historical 0.2.0 verification](docs/VERIFICATION_0.2.0.md) | Checks dated 1 October 2026, including restricted study-reference concordance; not rerun here |
+| [Changelog](CHANGELOG.md) | Scientific-policy changes in 0.2.0 and decimal-bin correction in 0.2.1 |
 
-Alternative time/workload column names are configurable. Rows are sorted by time;
-the input is not modified. Duplicate times and nonfinite structural fields raise
-an error: resolve device-specific harmonisation upstream instead of silently
-collapsing or deleting breaths. Non-numeric or infinite channel values become
-missing. Apply physiological quality-control masks upstream and keep affected
-breath rows, so that the five-position windows retain their intended meaning.
+The teaching example is separate from the manuscript reconstruction experiment.
+The public materials do not reproduce every manuscript result from public inputs.
+Interpolation supplies comparable positions, not independent measurements or
+clinical validation.
 
-Supply audited ramp onset, peak time and positive peak workload. The library does
-not estimate these markers or impose a physiological QC policy.
+## Citation and feedback
 
-```python
-import pandas as pd
-from cpet_skeleton import PhaseMarkers, transform_record
-
-record = pd.DataFrame({
-    "time_s": [0, 5, 10, 12, 17, 22],
-    "workload_w": [20, 60, 100, 10, 10, 10],
-    "VO2": [400, 600, 800, 750, 680, 600],
-})
-represented = transform_record(
-    record,
-    PhaseMarkers(ramp_start_s=0, peak_time_s=10, peak_workload_w=100),
-    channels=["VO2"],
-)
-curve = represented.ramp["VO2"]
-print(curve.grid, curve.values, curve.defined)
-print(represented.markers.recovery_anchor_s)  # 12.0
-```
-
-## Processing and defaults
-
-1. Select the ramp observations from onset through peak, inclusive. Infer recovery
-   as the first observation **strictly after peak** with workload <=10 W, or use
-   an explicit audited anchor. Select `[anchor, anchor + 180 s]` before smoothing.
-2. Apply one centred, five-observation **arithmetic moving mean**, with stride one
-   and at least one finite value per window, separately within each phase/channel.
-   Truncate windows at phase edges and restore the original channel missing mask.
-3. Map ramp using `100 * cumulative_max(workload) / peak_workload`. Map recovery
-   using `time - anchor`. Channel amplitudes retain their original units.
-4. Retain native coordinates inside the grid domain before assigning nearest
-   centres. Rounding uses ties-to-even, as in NumPy. Summarise each bin with the
-   **median** of its available smoothed values; this is distinct from smoothing.
-5. Require at least **two occupied bins per phase/channel**. Interpolate linearly
-   between occupied centres, with no extrapolation outside their bounds.
-
-| Argument | Default | Meaning |
-|---|---|---|
-| `rolling_window` | `5` | Positions per mean window; `1` disables smoothing |
-| `ramp_grid` | `0, 1, ..., 100` | Percentage points of attained peak workload |
-| `recovery_grid` | `0, 5, ..., 180` | Seconds from anchor |
-| `recovery_horizon_s` | `180` | Native recovery selection duration |
-| `recovery_threshold_w` | `10` | Threshold for automatic transition detection |
-| `infer_recovery_if_missing` | `True` | Infer an anchor when its supplied value is `None` |
-
-Custom grids must be finite, uniform, strictly increasing, start at zero and have
-at least two points. Ramp cannot exceed 100; recovery cannot exceed its horizon.
-If only the horizon changes, the default recovery grid ends at its last 5-second
-multiple. A horizon shorter than 5 seconds requires an explicit finer grid.
-Changing defaults is a researcher-defined adaptation, not an evaluated alternative
-protocol or an automatic reproduction of the manuscript results.
-
-### Recovery absence and protocol adaptation
-
-When no transition is recorded, `recovery_anchor_s` stays `None`; all recovery
-values are NaN and all recovery masks are false. There is **no peak-time fallback**
-and no paired-record rule. Ramp remains available when supported. An observed
-recovery can also lack sufficient channel support; phase availability and
-trajectory availability are different concepts.
-
-For another protocol, supply an audited `recovery_anchor_s` strictly after peak
-or adapt the threshold explicitly. To mark a phase unavailable without inference,
-use `PhaseMarkers(..., recovery_anchor_s=None)` with
-`infer_recovery_if_missing=False`. Cross-protocol validity requires separate
-evaluation.
-
-## Output and support
-
-`RecordRepresentation` has `ramp` and `recovery` dictionaries keyed by channel,
-plus the record's resolved `markers`. Every `SupportedTrajectory` contains:
-
-| Field | Meaning |
-|---|---|
-| `grid` | Fixed candidate coordinate array |
-| `values` | Values in input units; NaN outside defined support |
-| `defined` | Boolean availability mask |
-| `observed_bin` | Defined positions supplied by occupied-bin summaries |
-| `interpolated` | Defined positions estimated between occupied bins |
-
-With fewer than two occupied bins the entire trajectory, including its
-`observed_bin` mask, is unavailable. Bin summaries already include smoothing and
-aggregation; they are not raw measurements. Internal interpolation may bridge
-missing bins, but does not create independent observations. No gap-length limit
-is imposed by the manuscript method.
-
-To construct a matrix for a channel and phase, stack the `.values` arrays from
-independently processed records, and stack `.defined` in the same record order.
-Keep record identifiers and markers alongside the matrices.
-
-## Optional paired comparison
-
-```python
-from cpet_skeleton import compare_records
-
-# first and second are independently transformed RecordRepresentation objects.
-pair = compare_records(first, second, phase="recovery", channel="VCO2")
-print(pair.pointwise_difference)  # second minus first; NaN outside joint support
-print(pair.jointly_defined, pair.n_supported, pair.eligible, pair.rms)
-```
-
-Both inputs must use identical grids. RMS is computed on joint support only when
-`n_supported >= max(minimum_locations, ceil(support_fraction * grid_size))`.
-Defaults are 5 locations and 0.20, giving 21/101 for ramp and 8/37 for recovery.
-An ineligible RMS is NaN. This helper uses the full supplied grid; it does not
-derive or apply the manuscript's cohort-level display restriction. Differences,
-RMS, ratios, clustering and other downstream analyses are optional, separate
-research choices.
-
-## Reproducibility and scope
-
-Tests cover analytic curves, a known impulse response, phase boundary isolation,
-restored missing positions, workload downsteps, bin medians, rounding, unavailable
-recovery, insufficient bins and paired support. See [CHANGELOG.md](CHANGELOG.md)
-for changes from the initial skeleton.
-
-The implementation was checked locally against the corrected nominal study
-reference; the check scope and environment are recorded in
-[VERIFICATION.md](VERIFICATION.md). Public checks use only synthetic data. The
-repository does not include the restricted source records, historical simulation
-templates or full study analysis pipeline, and does not reproduce every table in
-the article from publicly supplied inputs.
-
-Ordered correspondence does not establish physiological equivalence, superiority
-to alternative coordinates, clinical subtypes or validated classifiers. Workload
-normalisation changes the coordinate, not the physiological channel amplitudes.
-
-## Citation and contributions
-
-Software citation metadata are provided in [CITATION.cff](CITATION.cff). The
-manuscript is under revision; no final journal citation or DOI is claimed. Add
-those identifiers when assigned. Report bugs with a small synthetic example,
-your Python/NumPy/pandas versions, and the expected versus observed behaviour.
-Do not include participant records or clinical identifiers in public issues.
+[CITATION.cff](CITATION.cff) identifies this software version. Report both the
+version and Git commit; no final journal citation or DOI is claimed. Report bugs
+with a small synthetic example, Python/NumPy/pandas versions and expected versus
+observed behaviour. Do not post participant records or clinical identifiers.

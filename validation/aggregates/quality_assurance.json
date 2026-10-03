@@ -1,0 +1,37 @@
+{
+  "regression_max_absolute_differences": {
+    "paired_grid_rmse": 1.0408340855860843e-16,
+    "paired_grid_coverage": 2.220446049250313e-16,
+    "grid_rmse": 9.71445146547012e-17,
+    "grid_rmse_units": 7.105427357601002e-15
+  },
+  "coverage_max_method_spreads": [
+    0.0,
+    0.0
+  ],
+  "source_rows": {
+    "curve": 632400,
+    "paired": 316200
+  },
+  "n_family_rows": 102000,
+  "n_participant_rows": 10200,
+  "source_missing_counts": {
+    "grid_rmse": 1410,
+    "grid_rmse_units": 1410,
+    "grid_mae": 1410,
+    "grid_bias": 1410,
+    "grid_coverage": 0,
+    "grid_bias_units": 1410,
+    "paired_grid_rmse": 1410,
+    "paired_grid_mae": 1410,
+    "paired_grid_bias": 1410,
+    "paired_grid_coverage": 0,
+    "paired_grid_rmse_units": 1410,
+    "paired_grid_bias_units": 1410
+  },
+  "point_estimates_only_not_recomputed_simulations": true,
+  "bootstrap_resamples": 2000,
+  "seed": 20261001,
+  "conditional_uncertainty": true,
+  "inputs_unchanged": true
+}

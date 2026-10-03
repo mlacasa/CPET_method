@@ -1,0 +1,50 @@
+{
+  "stage": "E20",
+  "source": "smoothing_20260930T104226+0200",
+  "created_at": "2026-10-01T14:24:31.390318+02:00",
+  "purpose": "Secondary engineering validation summaries using E08 known-truth metrics",
+  "primary_outputs": [
+    "final-curve RMSE",
+    "paired-difference RMSE",
+    "signed bias",
+    "coverage"
+  ],
+  "methods": [
+    "raw",
+    "mean5_p1",
+    "median5_p1",
+    "mean5_p2",
+    "median5_p2"
+  ],
+  "adopted": "mean5_p1",
+  "main_channel": "VCO2",
+  "supplementary_channels": "all 17",
+  "family_order": [
+    "clean",
+    "gaussian",
+    "impulse",
+    "burst",
+    "saw",
+    "true_peak",
+    "true_oscillation",
+    "border",
+    "slope",
+    "missing"
+  ],
+  "aggregation": "replicates already averaged in source; equal sessions and scenarios within family; equal family means within participant; equal participants",
+  "uncertainty": {
+    "seed": 20261001,
+    "resamples": 2000,
+    "generator": "NumPy PCG64",
+    "unit": "paired participant template",
+    "same_indices_for_all_endpoints": true,
+    "interval": "nominal 95% percentile, numpy linear quantiles",
+    "interpretation": "conditional on fixed synthetic design and stored replicate averages; not clinical or Monte Carlo uncertainty; not multiplicity adjusted"
+  },
+  "missing": "E08 finite-value aggregation retained; report per-endpoint n and unavailable source counts. Bootstrap all 60 clusters and average available endpoints; retain zero coverage. Missing family means must occur for all families of a participant endpoint, not silently change family weights.",
+  "normalized_errors": "in E08 channel amplitude scale, not relative to true paired change or percentages",
+  "contrasts": "paired participant mean5_p1 minus raw; no p-values, significance tally or clinical equivalence claim",
+  "status": "revision-stage analysis; E08 aggregate results already known; configuration saved before new summaries/intervals",
+  "new_simulations": false,
+  "change_filter_selection": false
+}

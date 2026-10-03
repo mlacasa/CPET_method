@@ -1,0 +1,13 @@
+test,method,passed
+shape_and_original_mask,raw,True
+shape_and_original_mask,mean5_p1,True
+shape_and_original_mask,median5_p1,True
+shape_and_original_mask,mean5_p2,True
+shape_and_original_mask,median5_p2,True
+0_bin_contract,all,True
+1_bin_contract,all,True
+2_bin_contract,all,True
+constant_preservation,mean5_p1,True
+constant_preservation,median5_p1,True
+constant_preservation,mean5_p2,True
+constant_preservation,median5_p2,True

@@ -1,0 +1,18 @@
+{
+  "completed_at": "2026-09-30T10:58:03.145020+02:00",
+  "templates": 60,
+  "records": 120,
+  "phases": 2,
+  "channels": 17,
+  "methods": [
+    "raw",
+    "mean5_p1",
+    "median5_p1",
+    "mean5_p2",
+    "median5_p2"
+  ],
+  "scenarios": 31,
+  "replicates": 5,
+  "replicate_aggregation": "mean per record/channel/scenario; not independent participants",
+  "seed": 20260930
+}

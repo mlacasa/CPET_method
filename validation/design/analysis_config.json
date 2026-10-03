@@ -1,0 +1,262 @@
+{
+  "run_id": "smoothing_20260930T104226+0200",
+  "created_at": "2026-09-30T10:42:28.917017+02:00",
+  "root_seed": 20260930,
+  "replicates": 5,
+  "methods": [
+    "raw",
+    "mean5_p1",
+    "median5_p1",
+    "mean5_p2",
+    "median5_p2"
+  ],
+  "primary_candidates": [
+    "mean5_p1",
+    "median5_p1",
+    "mean5_p2",
+    "median5_p2"
+  ],
+  "channels": [
+    "VO2kg",
+    "VO2",
+    "VCO2",
+    "RER",
+    "BF",
+    "VE",
+    "PETCO2",
+    "PETO2",
+    "RPM",
+    "EqCO2",
+    "EqO2",
+    "SpO2",
+    "HR",
+    "HRR_L",
+    "O2pulse",
+    "Psist",
+    "Pdia"
+  ],
+  "window": 5,
+  "center": true,
+  "stride": 1,
+  "min_periods": 1,
+  "restore_original_mask_after_each_pass": true,
+  "phase_local": true,
+  "bin_operator": "median; nearest ties-to-even; >=2 occupied bins; no boundary extrapolation",
+  "reference_run": "20260930T101337+0200",
+  "truth": "analytic channel-specific mathematical functions of phase coordinate; not fitted or validated physiological ground truth",
+  "scale": "per-channel median of record-phase empirical q95-q05, floor only if entire channel scale zero; used for units, not filter tuning",
+  "sampling": "all 60 paired empirical timestamp/workload/missingness patterns; 120 records; two phases",
+  "real_reference": "raw QC export for impact only; not noise-free truth",
+  "decision": {
+    "primary": "mean normalized RMSE: 25% native and 75% gridded; mean within each scenario family, equal family weights, then equal phases/channels, participant means",
+    "candidates": [
+      "mean5_p1",
+      "median5_p1",
+      "mean5_p2",
+      "median5_p2"
+    ],
+    "tie": "exact numerical tie within 1e-12: fewer passes, then mean before median (literature precedent); not equivalence",
+    "uncertainty": "2000 participant-cluster bootstrap resamples; sessions/replicates stay together",
+    "sensitivity": "native-only, grid-only, clean-feature families, leave-one-family-out, core7, exclude BP and RPM",
+    "feature_checks": "report peak amplitude/area/width/location; do not discard adverse cases",
+    "interpretation": "single global operational choice among four specified candidates; no universal clinical-optimality claim"
+  },
+  "scenarios": [
+    {
+      "scenario": "clean",
+      "family": "clean"
+    },
+    {
+      "scenario": "gaussian_0.05",
+      "family": "gaussian",
+      "sd": 0.05
+    },
+    {
+      "scenario": "gaussian_0.15",
+      "family": "gaussian",
+      "sd": 0.15
+    },
+    {
+      "scenario": "impulse_-0.5",
+      "family": "impulse",
+      "artifact": -0.5,
+      "length": 1
+    },
+    {
+      "scenario": "impulse_0.5",
+      "family": "impulse",
+      "artifact": 0.5,
+      "length": 1
+    },
+    {
+      "scenario": "impulse_-1",
+      "family": "impulse",
+      "artifact": -1.0,
+      "length": 1
+    },
+    {
+      "scenario": "impulse_1",
+      "family": "impulse",
+      "artifact": 1.0,
+      "length": 1
+    },
+    {
+      "scenario": "impulse_-3",
+      "family": "impulse",
+      "artifact": -3.0,
+      "length": 1
+    },
+    {
+      "scenario": "impulse_3",
+      "family": "impulse",
+      "artifact": 3.0,
+      "length": 1
+    },
+    {
+      "scenario": "burst_2",
+      "family": "burst",
+      "artifact": 1.0,
+      "length": 2
+    },
+    {
+      "scenario": "burst_3",
+      "family": "burst",
+      "artifact": 1.0,
+      "length": 3
+    },
+    {
+      "scenario": "saw_0.05",
+      "family": "saw",
+      "saw": 0.05
+    },
+    {
+      "scenario": "saw_0.15",
+      "family": "saw",
+      "saw": 0.15
+    },
+    {
+      "scenario": "peak_0.1_5",
+      "family": "true_peak",
+      "feature": "peak",
+      "amp": 0.1,
+      "duration": 5.0
+    },
+    {
+      "scenario": "oscillation_0.1_5",
+      "family": "true_oscillation",
+      "feature": "oscillation",
+      "amp": 0.1,
+      "duration": 5.0
+    },
+    {
+      "scenario": "peak_0.1_15",
+      "family": "true_peak",
+      "feature": "peak",
+      "amp": 0.1,
+      "duration": 15.0
+    },
+    {
+      "scenario": "oscillation_0.1_15",
+      "family": "true_oscillation",
+      "feature": "oscillation",
+      "amp": 0.1,
+      "duration": 15.0
+    },
+    {
+      "scenario": "peak_0.1_30",
+      "family": "true_peak",
+      "feature": "peak",
+      "amp": 0.1,
+      "duration": 30.0
+    },
+    {
+      "scenario": "oscillation_0.1_30",
+      "family": "true_oscillation",
+      "feature": "oscillation",
+      "amp": 0.1,
+      "duration": 30.0
+    },
+    {
+      "scenario": "border_peak_0.1",
+      "family": "border",
+      "feature": "peak",
+      "amp": 0.1,
+      "duration": 15.0,
+      "border": true
+    },
+    {
+      "scenario": "peak_0.3_5",
+      "family": "true_peak",
+      "feature": "peak",
+      "amp": 0.3,
+      "duration": 5.0
+    },
+    {
+      "scenario": "oscillation_0.3_5",
+      "family": "true_oscillation",
+      "feature": "oscillation",
+      "amp": 0.3,
+      "duration": 5.0
+    },
+    {
+      "scenario": "peak_0.3_15",
+      "family": "true_peak",
+      "feature": "peak",
+      "amp": 0.3,
+      "duration": 15.0
+    },
+    {
+      "scenario": "oscillation_0.3_15",
+      "family": "true_oscillation",
+      "feature": "oscillation",
+      "amp": 0.3,
+      "duration": 15.0
+    },
+    {
+      "scenario": "peak_0.3_30",
+      "family": "true_peak",
+      "feature": "peak",
+      "amp": 0.3,
+      "duration": 30.0
+    },
+    {
+      "scenario": "oscillation_0.3_30",
+      "family": "true_oscillation",
+      "feature": "oscillation",
+      "amp": 0.3,
+      "duration": 30.0
+    },
+    {
+      "scenario": "border_peak_0.3",
+      "family": "border",
+      "feature": "peak",
+      "amp": 0.3,
+      "duration": 15.0,
+      "border": true
+    },
+    {
+      "scenario": "slope_change",
+      "family": "slope",
+      "feature": "slope",
+      "amp": 0.3
+    },
+    {
+      "scenario": "random10",
+      "family": "missing",
+      "missing": "random10",
+      "sd": 0.05
+    },
+    {
+      "scenario": "gap15",
+      "family": "missing",
+      "missing": "gap15",
+      "sd": 0.05
+    },
+    {
+      "scenario": "truncated10",
+      "family": "missing",
+      "missing": "truncated10",
+      "sd": 0.05
+    }
+  ]
+}

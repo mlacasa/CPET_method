@@ -1,0 +1,9 @@
+record,phase,grid_size,defined,observed_bin,interpolated
+ramp_4min,ramp,101,81,76,5
+ramp_4min,recovery,37,36,35,1
+ramp_8min,ramp,101,81,79,2
+ramp_8min,recovery,37,36,36,0
+ramp_8min_plus30,ramp,101,81,79,2
+ramp_8min_plus30,recovery,37,36,36,0
+ramp_8min_no_recovery,ramp,101,81,79,2
+ramp_8min_no_recovery,recovery,37,0,0,0

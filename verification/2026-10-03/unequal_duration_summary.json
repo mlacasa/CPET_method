@@ -1,0 +1,52 @@
+{
+  "package_version": "0.2.1",
+  "data": "synthetic only",
+  "seeds": [
+    401,
+    801
+  ],
+  "channel_units": {
+    "VCO2": "mL/min"
+  },
+  "coordinate_units": {
+    "ramp": "%Wpeak",
+    "recovery": "seconds from anchor"
+  },
+  "rolling_window": 5,
+  "paired": {
+    "ramp": {
+      "alignment": {
+        "n_supported": 81,
+        "n_minimum": 21,
+        "rms": 2.732466829618438
+      },
+      "known_offset": {
+        "n_supported": 81,
+        "n_minimum": 21,
+        "rms": 30.000000000000007
+      },
+      "missing_recovery": {
+        "n_supported": 81,
+        "n_minimum": 21,
+        "rms": 0.0
+      }
+    },
+    "recovery": {
+      "alignment": {
+        "n_supported": 36,
+        "n_minimum": 8,
+        "rms": 8.20703253383555
+      },
+      "known_offset": {
+        "n_supported": 36,
+        "n_minimum": 8,
+        "rms": 29.999999999999996
+      },
+      "missing_recovery": {
+        "n_supported": 0,
+        "n_minimum": 8,
+        "rms": null
+      }
+    }
+  }
+}

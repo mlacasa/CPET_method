@@ -1,0 +1,4 @@
+* text=auto eol=lf
+# Retain the exact published bytes recorded in validation/PROVENANCE.json.
+validation/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+*.png binary
