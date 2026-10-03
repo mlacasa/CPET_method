@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "Please cite this software version and the accompanying manuscript when its final citation is available."
+title: "Protocol-aware CPET functional representation"
+type: software
+repository-code: "https://github.com/mlacasa/CPET_method"
+url: "https://github.com/mlacasa/CPET_method"
+version: 0.2.0
+authors:
+  - family-names: Lacasa-Cazcarra
+    given-names: Marcos
+  - family-names: Launois Obregon
+    given-names: Patricia
+  - family-names: Gomez Garrido
+    given-names: Alba
+abstract: "Independent phase-specific CPET representation with mean smoothing, ordered grids and explicit support masks."

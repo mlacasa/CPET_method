@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cpet-functional-skeleton"
-version = "0.1.0"
+version = "0.2.0"
 description = "Protocol-aware phase-specific functional representation of breath-by-breath CPET records"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -18,6 +18,8 @@ dependencies = [
   "pandas>=2.0",
 ]
 
+[project.urls]
+Repository = "https://github.com/mlacasa/CPET_method"
+
 [tool.setuptools.packages.find]
 where = ["src"]
-

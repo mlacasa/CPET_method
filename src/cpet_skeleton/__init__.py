@@ -19,4 +19,3 @@ __all__ = [
     "infer_recovery_anchor",
     "transform_record",
 ]
-

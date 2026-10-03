@@ -1,0 +1,6 @@
+# Optional reproducibility constraints, tested with Python 3.13.9 on Windows.
+numpy==2.5.3
+pandas==3.0.6
+python-dateutil==2.9.0.post0
+six==1.17.0
+tzdata==2026.4

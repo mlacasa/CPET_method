@@ -1,0 +1,4 @@
+include README.md CHANGELOG.md RELEASE.md VERIFICATION.md CITATION.cff
+include constraints-verified.txt
+recursive-include examples *.py
+recursive-include tests *.py

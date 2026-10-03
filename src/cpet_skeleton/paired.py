@@ -32,12 +32,15 @@ def compare_trajectories(
 ) -> PairedDiscrepancy:
     """Compare two already represented trajectories on their jointly defined grid."""
 
-    if cpet1.grid.shape != cpet2.grid.shape or not np.allclose(
+    if cpet1.grid.shape != cpet2.grid.shape or not np.array_equal(
         cpet1.grid, cpet2.grid
     ):
         raise ValueError("Trajectories must use the same phase-specific grid.")
     if not 0 <= support_fraction <= 1:
         raise ValueError("support_fraction must lie between 0 and 1.")
+    if (isinstance(minimum_locations, bool)
+            or not isinstance(minimum_locations, (int, np.integer)) or minimum_locations < 1):
+        raise ValueError("minimum_locations must be a positive integer.")
 
     joint = (
         cpet1.defined
@@ -74,6 +77,8 @@ def compare_records(
 ) -> PairedDiscrepancy:
     """Select one phase and channel, then call :func:`compare_trajectories`."""
 
+    if phase not in ("ramp", "recovery"):
+        raise ValueError("phase must be 'ramp' or 'recovery'.")
     first = getattr(cpet1, phase)
     second = getattr(cpet2, phase)
     if channel not in first or channel not in second:
@@ -84,4 +89,3 @@ def compare_records(
         support_fraction=support_fraction,
         minimum_locations=minimum_locations,
     )
-
